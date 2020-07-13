@@ -1,0 +1,34 @@
+<!DOCUMENT html>
+<html>
+     <head>
+      <meta charset='utf-8'>
+      <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">   
+      </script>
+      
+      <style>
+           .main-container{
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                //background-color: blue;
+           }
+      </style>	
+     </head>
+     <body>
+	  <div class="main-container">
+             在线时长：<span class="span"></span>s
+          </div>
+	  <script>
+		var w;
+		function load(){
+			if(typeof(w)=="undefined"){
+    				w=new Worker("worker1.js");
+			}
+			w.onmessage=function(event){
+  				$(".span").text(event.data);
+			};
+		}
+		window.addEventListener("load",load,true);
+	  </script>
+     </body>
+</html>	
